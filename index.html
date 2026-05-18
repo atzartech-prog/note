@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Catatan Cloud Flatfile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .note-item {
+            transition: all 0.2s ease-in-out;
+        }
+        .note-item:hover {
+            transform: translateY(-2px);
+        }
+        /* Animasi pulse untuk status cloud */
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen flex items-center justify-center p-4 font-sans text-slate-800">
+
+    <div class="bg-white w-full max-w-md rounded-2xl shadow-xl overflow-hidden flex flex-col h-[85vh]">
+        
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-indigo-600 to-violet-600 text-white p-5">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h1 class="text-2xl font-bold flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        Catatan Cloud Sync
+                    </h1>
+                    <p class="text-indigo-200 text-xs mt-1">Sinkronisasi otomatis multi-perangkat</p>
+                </div>
+                <!-- Cloud Status Indicator -->
+                <div id="cloudStatus" class="flex items-center gap-1.5 bg-indigo-700/50 px-2.5 py-1 rounded-full text-xs font-medium border border-indigo-500/30">
+                    <span class="h-2 w-2 rounded-full bg-yellow-400 animate-pulse-slow" id="statusDot"></span>
+                    <span id="statusText">Menghubungkan...</span>
+                </div>
+            </div>
+            
+            <!-- User Info -->
+            <div class="mt-4 pt-3 border-t border-indigo-500/30 text-xs text-indigo-100 flex flex-col gap-0.5">
+                <span class="font-semibold">ID Pengguna Anda:</span>
+                <span class="font-mono bg-indigo-950/40 p-1.5 rounded select-all break-all overflow-x-auto block" id="myUserId">Memuat ID...</span>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-5 border-b border-slate-100 bg-slate-50">
+            <div class="flex gap-2">
+                <input type="text" id="noteInput" placeholder="Tulis catatan cloud baru..." disabled
+                       class="flex-1 px-4 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent disabled:bg-slate-100 disabled:cursor-not-allowed">
+                <button id="addBtn" onclick="addNote()" disabled class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-colors disabled:bg-indigo-400 disabled:cursor-not-allowed">
+                    Tambah
+                </button>
+            </div>
+        </div>
+
+        <!-- List Area (Scrollable) -->
+        <div class="flex-1 overflow-y-auto p-5" id="notesList">
+            <div class="flex flex-col items-center justify-center h-full text-slate-400 gap-2">
+                <svg class="animate-spin h-6 w-6 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span>Menghubungkan ke database awan...</span>
+            </div>
+        </div>
+
+        <!-- Custom Notification Toast -->
+        <div id="toast" class="hidden mx-5 mb-3 p-3 bg-red-100 text-red-700 rounded-lg text-xs font-medium border border-red-200 transition-all">
+        </div>
+
+        <!-- Footer / Database Actions -->
+        <div class="p-4 bg-slate-50 border-t border-slate-200 flex justify-between items-center text-sm">
+            <span class="text-slate-500 font-medium" id="totalNotes">Total: 0 catatan</span>
+            <button onclick="exportJSON()" class="flex items-center gap-1.5 text-indigo-600 hover:text-indigo-800 font-medium bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-lg transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Unduh Cadangan
+            </button>
+        </div>
+    </div>
+
+    <!-- Firebase SDK Modules -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Konfigurasi Environment & Firebase
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'catatan-flatfile-sync';
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        // Inisialisasi Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // State Global
+        let currentUser = null;
+        let notesData = [];
+
+        // UI Elements
+        const statusDot = document.getElementById('statusDot');
+        const statusText = document.getElementById('statusText');
+        const myUserIdSpan = document.getElementById('myUserId');
+        const noteInput = document.getElementById('noteInput');
+        const addBtn = document.getElementById('addBtn');
+        const notesList = document.getElementById('notesList');
+        const totalNotes = document.getElementById('totalNotes');
+        const toast = document.getElementById('toast');
+
+        // Fungsi pembantu untuk mengubah status koneksi
+        function updateStatus(status, color) {
+            statusText.textContent = status;
+            statusDot.className = `h-2 w-2 rounded-full bg-${color}-500 ${color === 'yellow' ? 'animate-pulse-slow' : ''}`;
+        }
+
+        // Tampilkan pesan error non-alert
+        function showNotification(message) {
+            toast.textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 5000);
+        }
+
+        // 1. Proses Autentikasi terlebih dahulu (RULE 3)
+        const initAuth = async () => {
+            try {
+                updateStatus("Mengautentikasi...", "yellow");
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+            } catch (err) {
+                console.error("Gagal melakukan autentikasi:", err);
+                updateStatus("Gagal Masuk", "red");
+                showNotification("Gagal terhubung dengan sistem keamanan Cloud.");
+            }
+        };
+
+        // Mulai proses autentikasi sesegera mungkin
+        initAuth();
+
+        // 2. Pantau Perubahan Status Autentikasi
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                myUserIdSpan.textContent = user.uid;
+                noteInput.removeAttribute('disabled');
+                addBtn.removeAttribute('disabled');
+                updateStatus("Tersambung", "green");
+                
+                // Setelah user terautentikasi, mulai mendengarkan perubahan data di Firestore
+                startRealtimeSync();
+            } else {
+                currentUser = null;
+                myUserIdSpan.textContent = "Tidak terautentikasi";
+                noteInput.setAttribute('disabled', 'true');
+                addBtn.setAttribute('disabled', 'true');
+                updateStatus("Terputus", "red");
+            }
+        });
+
+        // 3. Sinkronisasi Data Real-time (RULE 1 & RULE 2)
+        function startRealtimeSync() {
+            if (!currentUser) return;
+
+            // Menggunakan path publik aman sesuai RULE 1
+            const notesCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'notes');
+
+            // Listening real-time dengan error callback wajib
+            onSnapshot(notesCollectionRef, (snapshot) => {
+                const tempNotes = [];
+                snapshot.forEach((doc) => {
+                    tempNotes.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
+                });
+
+                // Lakukan pengurutan (sorting) di memori klien untuk mematuhi RULE 2
+                tempNotes.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                notesData = tempNotes;
+                renderNotes();
+                updateStatus("Sinkron", "green");
+            }, (error) => {
+                console.error("Kesalahan sinkronisasi Firestore:", error);
+                updateStatus("Error Sinkronisasi", "red");
+                showNotification("Kesalahan sinkronisasi data: " + error.message);
+            });
+        }
+
+        // 4. Render data catatan ke layar HTML
+        window.renderNotes = function() {
+            notesList.innerHTML = '';
+
+            if (notesData.length === 0) {
+                notesList.innerHTML = `
+                    <div class="flex flex-col items-center justify-center h-full text-slate-400 gap-1">
+                        <p class="text-center mt-10">Belum ada catatan di cloud.</p>
+                        <p class="text-xs text-center text-slate-300">Jadilah yang pertama menulis!</p>
+                    </div>`;
+                totalNotes.textContent = "Total: 0 catatan";
+                return;
+            }
+
+            notesData.forEach(note => {
+                const noteElement = document.createElement('div');
+                noteElement.className = 'note-item bg-white p-4 rounded-xl border border-slate-200 mb-3 flex justify-between items-start';
+                
+                const dateObj = new Date(note.date);
+                const dateString = dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+
+                // Menandai jika catatan ini ditulis oleh pengguna yang sedang aktif saat ini
+                const isMyNote = note.authorId === currentUser?.uid;
+                const authorLabel = isMyNote ? 'Anda' : `User: ${note.authorId.substring(0, 8)}...`;
+
+                noteElement.innerHTML = `
+                    <div class="pr-4 flex-1">
+                        <p class="text-slate-800 font-medium break-all">${note.text}</p>
+                        <div class="flex flex-wrap items-center gap-2 mt-1.5 text-[10px]">
+                            <span class="text-slate-400">${dateString}</span>
+                            <span class="px-1.5 py-0.5 rounded ${isMyNote ? 'bg-indigo-50 text-indigo-600 font-semibold' : 'bg-slate-100 text-slate-500'}" title="${note.authorId}">
+                                ${authorLabel}
+                            </span>
+                        </div>
+                    </div>
+                    <button onclick="deleteNote('${note.id}')" class="text-red-400 hover:text-red-600 bg-red-50 hover:bg-red-100 p-2 rounded-lg transition-colors flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                    </button>
+                `;
+                notesList.appendChild(noteElement);
+            });
+
+            totalNotes.textContent = `Total: ${notesData.length} catatan`;
+        };
+
+        // 5. Tambah catatan baru ke Firestore Cloud
+        window.addNote = async function() {
+            if (!currentUser) return;
+
+            const text = noteInput.value.trim();
+            if (text === '') return;
+
+            updateStatus("Menyimpan...", "yellow");
+            const noteId = Date.now().toString(); // ID unik string
+            
+            const newNote = {
+                text: text,
+                date: new Date().toISOString(),
+                authorId: currentUser.uid
+            };
+
+            try {
+                // Tulis langsung ke path terstruktur aman (RULE 1)
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'notes', noteId);
+                await setDoc(docRef, newNote);
+                
+                noteInput.value = '';
+                updateStatus("Tersimpan", "green");
+            } catch (err) {
+                console.error("Gagal menambahkan catatan:", err);
+                updateStatus("Gagal Menyimpan", "red");
+                showNotification("Gagal mengirim catatan ke cloud. Silakan coba lagi.");
+            }
+        };
+
+        // Dukungan tombol Enter pada input
+        noteInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') addNote();
+        });
+
+        // 6. Hapus catatan dari Firestore Cloud
+        window.deleteNote = async function(id) {
+            if (!currentUser) return;
+
+            updateStatus("Menghapus...", "yellow");
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'notes', id);
+                await deleteDoc(docRef);
+                updateStatus("Terhapus", "green");
+            } catch (err) {
+                console.error("Gagal menghapus catatan:", err);
+                updateStatus("Gagal Menghapus", "red");
+                showNotification("Anda tidak memiliki izin atau terjadi gangguan koneksi saat menghapus.");
+            }
+        };
+
+        // 7. Unduh Cadangan Database Lokal (Mengekspor JSON ter-update dari cloud)
+        window.exportJSON = function() {
+            const backupData = {
+                appName: "Buku Catatan Cloud Sync",
+                appId: appId,
+                exportedAt: new Date().toISOString(),
+                totalRecords: notesData.length,
+                records: notesData
+            };
+
+            const dataStr = JSON.stringify(backupData, null, 2);
+            const blob = new Blob([dataStr], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `backup_cloud_notes_${appId}.json`;
+            document.body.appendChild(a);
+            a.click();
+            
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        };
+    </script>
+</body>
+</html>
