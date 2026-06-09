@@ -20,8 +20,8 @@
 
 /* Root Variables - Light Theme */
 [data-theme="light"] {
-  --bg-color: #f8fafc;
-  --bg-gradient: radial-gradient(circle at 50% 0%, #eef2ff 0%, #f8fafc 100%);
+  --bg-color: #f1f5f9;
+  --bg-gradient: linear-gradient(to bottom, #f8fafc 0%, #f1f5f9 100%);
   --card-bg: #ffffff;
   --card-hover-bg: #ffffff;
   --text-color: #0f172a;
@@ -30,11 +30,11 @@
   --primary-hover: #3730a3;
   --primary-rgb: 79, 70, 229;
   --accent-color: #9333ea;
-  --border-color: rgba(0, 0, 0, 0.08);
-  --border-hover: rgba(0, 0, 0, 0.15);
-  --nav-bg: rgba(248, 250, 252, 0.85);
-  --shadow-color: rgba(0, 0, 0, 0.05);
-  --glow-color: rgba(79, 70, 229, 0.05);
+  --border-color: rgba(0, 0, 0, 0.1);
+  --border-hover: rgba(0, 0, 0, 0.18);
+  --nav-bg: rgba(248, 250, 252, 0.9);
+  --shadow-color: rgba(15, 23, 42, 0.08);
+  --glow-color: rgba(79, 70, 229, 0.08);
   --input-bg: #ffffff;
 }
 
