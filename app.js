@@ -1,7 +1,7 @@
 // Global state variables
 let allPosts = [];
 const POSTS_PER_PAGE = 8;
-let currentTheme = localStorage.getItem('theme') || 'dark';
+let currentTheme = localStorage.getItem('theme') || 'light';
 
 // DOM elements
 const themeToggleBtn = document.getElementById('themeToggleBtn');
