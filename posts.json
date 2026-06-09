@@ -1,0 +1,112 @@
+[
+  {
+    "id": "building-custom-mechanical-keyboard",
+    "title": "Building a Custom Mechanical Keyboard: The Ultimate DIY Guide",
+    "date": "2026-06-08",
+    "category": "DIY",
+    "tags": ["keyboard", "diy", "tech", "mechanical"],
+    "summary": "Step-by-step guide to building your first custom mechanical keyboard, from selecting switches to soldering and keycap selection.",
+    "content": "<p>Mechanical keyboards have taken the tech world by storm, and for good reason. They offer superior tactile feedback, durability, and a level of customization that standard membrane keyboards simply cannot match. If you want to take your setup to the next level, building your own custom keyboard is the ultimate project.</p><h3>Why Build Your Own?</h3><p>When you build your own mechanical keyboard, you control every single aspect of the experience:</p><ul><li><strong>Layout:</strong> From compact 60% layouts to full-size layouts.</li><li><strong>Switches:</strong> Linear, tactile, or clicky. You can select the exact actuation force and sound profile you prefer.</li><li><strong>Aesthetics:</strong> Custom cases, keycaps, and cables to match your desk setup.</li></ul><h3>Step-by-Step Build Process</h3><p>Here is a quick summary of the steps involved in a custom keyboard build:</p><ol><li><strong>Component Selection:</strong> Choose your PCB (Printed Circuit Board), case, switches, stabilizers, keycaps, and a mounting plate.</li><li><strong>Testing the PCB:</strong> Before assembly, plug the PCB into a computer and use a key tester to ensure all switches register correctly.</li><li><strong>Lubing the Stabilizers & Switches (Optional but recommended):</strong> Applying lubricant to stabilizers and switches makes them sound deeper and feel smoother.</li><li><strong>Installing Stabilizers:</strong> Mount stabilizers on the PCB.</li><li><strong>Soldering or Hot-Swapping:</strong> Insert switches through the plate and into the PCB, then solder them in place (or push them in if using a hot-swap PCB).</li><li><strong>Assembling the Case:</strong> Mount the PCB/plate assembly into the case.</li><li><strong>Adding Keycaps:</strong> Finish the build by pushing on your chosen keycaps!</li></ol><p>It's a rewarding project that combines hardware assembly with artistic design, resulting in an input device that is uniquely yours.</p>",
+    "image": "assets/keyboard.png"
+  },
+  {
+    "id": "retro-gaming-console-raspberry-pi",
+    "title": "Turn a Raspberry Pi into a retro console with RetroPie",
+    "date": "2026-06-05",
+    "category": "Retro Gadgets",
+    "tags": ["retro", "raspberry-pi", "diy", "gaming"],
+    "summary": "Relive the nostalgia of classic gaming by building your own multi-emulator console using a Raspberry Pi and RetroPie.",
+    "content": "<p>Classic gaming holds a special place in the hearts of many. While original console hardware can be hard to find and expensive to maintain, emulation has advanced to the point where you can play games from dozens of retro platforms on a tiny, affordable single-board computer: the Raspberry Pi.</p><h3>What You'll Need</h3><ul><li>Raspberry Pi (Pi 4 or Pi 5 recommended for later consoles like N64 or PS1)</li><li>MicroSD card (32GB or larger recommended)</li><li>MicroSD card reader</li><li>Raspberry Pi power supply and HDMI cable</li><li>One or more USB or Bluetooth controllers</li><li>A case for your Raspberry Pi (optional, but recommended)</li></ul><h3>Setting Up RetroPie</h3><p>1. Download the Raspberry Pi Imager on your PC. Choose 'RetroPie' under the emulation section as the Operating System, select your SD card, and write the image.</p><p>2. Insert the SD card into your Raspberry Pi, connect your controllers, monitor, and power it up. Follow the on-screen instructions to configure your gamepad inputs.</p><p>3. Connect the Pi to your Wi-Fi network through the RetroPie configuration menu. This will allow you to transfer game files (ROMs) from your computer easily.</p><p>4. Transfer your legally owned game backups to the corresponding folders (e.g., <code>/home/pi/RetroPie/roms/nes</code>) using an FTP client or a USB drive.</p><p>Now you have a powerful retro console that can play games from the NES, SNES, Genesis, PlayStation, and even arcade systems, all in a box smaller than a cassette tape!</p>",
+    "image": "assets/retro_console.jpg"
+  },
+  {
+    "id": "vintage-cassette-restoration",
+    "title": "Restoring a Vintage Walkman Cassette Player",
+    "date": "2026-06-01",
+    "category": "DIY",
+    "tags": ["vintage", "restoration", "cassette", "retro"],
+    "summary": "A guide to cleaning, replacing belts, and calibrating speed on a vintage Sony Walkman to bring physical music back to life.",
+    "content": "<p>The resurgence of analog media isn't limited to vinyl records; cassette tapes are experiencing a major revival. However, vintage portable cassette players (commonly known as Walkmans) are mechanical devices with parts that degrade over time. If you find one in a thrift store or attic, it will likely need a restoration to work properly.</p><h3>Common Walkman Issues</h3><p>Almost all vintage cassette players suffer from two main issues: dry, stretched, or melted rubber belts, and dirty tape heads/pinch rollers. Here is how to fix them.</p><h3>1. Replacing the Belts</h3><p>Open the Walkman's casing carefully using precision screwdrivers. Locate the rubber belts connecting the motor to the capstan flywheels. Over 30+ years, the rubber either stretches or turns into a sticky black goo. Clean any residue using isopropyl alcohol (90%+) and Q-tips, then stretch new replacement belts (specific to your Walkman model) over the pulleys.</p><h3>2. Cleaning the Audio Path</h3><p>Take a cotton swab dipped in isopropyl alcohol and gently clean the magnetic playback head (the metal box-like component that touches the tape) and the metal capstan pin. For the rubber pinch roller, use a mild soap and water solution or dedicated rubber cleaner, as isopropyl alcohol can dry out rubber over time.</p><h3>3. Calibrating the Speed</h3><p>Once reassembled, you might find the music plays too slow or too fast. Most Walkmans have a small potentiometer screw on the mainboard (often labeled 'speed' or near the motor). Play a standard test tape (or a song you know well), insert a small screwdriver into the adjustment hole, and turn it slowly until the playback pitch is correct.</p><p>With these three steps, your vintage cassette player will sound just as good as it did in the 80s!</p>",
+    "image": "assets/walkman.jpg"
+  },
+  {
+    "id": "history-of-pda-palm-pilot",
+    "title": "The Palm Pilot: The Precursor to Modern Smartphones",
+    "date": "2026-05-28",
+    "category": "Retro Gadgets",
+    "tags": ["retro", "gadgets", "history", "palm-pilot"],
+    "summary": "Exploring the history and legacy of Palm OS devices, the gadgets that taught us how to put our digital lives in our pockets.",
+    "content": "<p>Before iPhones and Android devices dominated our pockets, there was the Personal Digital Assistant (PDA). And in the late 90s and early 2000s, the undisputed king of PDAs was the Palm Pilot. Designed by Jeff Hawkins, the Palm Pilot succeeded where earlier devices like the Apple Newton failed, primarily due to its simplicity, compact size, and revolutionary input system.</p><h3>The Graffiti Writing System</h3><p>One of the Palm Pilot's key innovations was Graffiti, a simplified, single-stroke handwriting recognition system. Instead of trying to recognize normal handwriting, Palm forced users to learn a simple alphabet designed to be easy for the low-powered Motorola processor to interpret. It was surprisingly fast and reliable once you got the hang of it.</p><h3>A Legacy of Syncing</h3><p>The Palm Pilot wasn't meant to replace a PC; it was designed as an extension of it. The 'HotSync' cradle allowed users to sync their contacts, calendars, to-do lists, and memos with their desktop computer at the press of a single button. This focus on seamless synchronization is a foundational pillar of modern cloud ecosystems today.</p><p>Playing with a Palm m500 or Vx today reveals a remarkably responsive UI, a screen that is highly readable in direct sunlight, and a battery life that lasts for weeks on a couple of AAA batteries or a tiny rechargeable cell. It's a reminder of a time when mobile computing was focused on efficiency and utility rather than constant attention-grabbing notifications.</p>",
+    "image": "assets/palm_pilot.jpg"
+  },
+  {
+    "id": "crt-gaming-revival",
+    "title": "Why CRT Monitors Are Making a Comeback for Retro Gaming",
+    "date": "2026-05-24",
+    "category": "Retro Gadgets",
+    "tags": ["crt", "gaming", "retro", "display"],
+    "summary": "Exploring the science of why classic video games look and feel better on vintage cathode-ray tube televisions than modern 4K flatscreens.",
+    "content": "<p>If you connect an NES or Sega Genesis to a modern 4K OLED TV, you might be disappointed. The pixels look harsh and blocky, the colors can feel washed out, and there is a noticeable delay between pressing a button and seeing your character jump. To experience these games as they were intended, you need a Cathode-Ray Tube (CRT) monitor.</p><h3>The Magic of Scanlines and Phosphors</h3><p>Retro games were designed around the limitations of CRT technology. CRT screens draw images line by line, creating natural gaps called scanlines. Additionally, the electron gun activates phosphors on the screen, creating a gentle bloom effect. This bloom and scanline pattern acts as a natural anti-aliasing filter, blending pixels together to create detailed textures out of simple pixel art. On a modern LCD, this art style breaks down into sharp, raw squares.</p><h3>Zero Input Latency</h3><p>Modern displays must buffer frames to scale up lower resolutions (like 240p) to 1080p or 4K, introducing input lag. CRTs, on the other hand, are analog devices. The signal is drawn to the glass screen almost instantaneously, providing true zero latency. For fast-paced games like Super Mario World, Street Fighter II, or Tetris, this responsiveness is game-changing.</p><p>While heavy, bulky, and prone to high-voltage component wear, CRTs remain the ultimate way to play classic analog console games.</p>",
+    "image": "assets/crt_tv.jpg"
+  },
+  {
+    "id": "command-line-productivity-tips",
+    "title": "Mastering the Command Line: Essential Tips & Tricks",
+    "date": "2026-05-20",
+    "category": "Tips & Tricks",
+    "tags": ["terminal", "productivity", "linux", "git"],
+    "summary": "Supercharge your terminal workflow with these essential aliases, keyboard shortcuts, and modern command-line utilities.",
+    "content": "<p>The command line is one of the most powerful tools in a developer's toolkit, but many only scratch the surface of its capabilities. By optimizing your terminal environment, you can save hours of repetitive typing and speed up your daily workflows.</p><h3>1. Embrace Aliases</h3><p>Stop typing long commands over and over. Open your shell configuration file (like <code>.bashrc</code> or <code>.zshrc</code>) and add aliases for commands you run frequently. For example:</p><pre><code>alias gs=\"git status\"\nalias gp=\"git push\"\nalias dc=\"docker-compose\"</code></pre><h3>2. Master Directory Navigation</h3><p>Instead of typing <code>cd ../..</code>, use tools like <strong>autojump</strong> or <strong>zoxide</strong>. These utilities learn which directories you visit most often and let you jump to them with a simple keyword (e.g., <code>z weblog</code> will jump straight to your weblog directory from anywhere).</p><h3>3. Essential Keyboard Shortcuts</h3><ul><li><code>Ctrl + A</code>: Move cursor to the start of the line.</li><li><code>Ctrl + E</code>: Move cursor to the end of the line.</li><li><code>Ctrl + R</code>: Search your command history backwards.</li><li><code>Ctrl + W</code>: Delete the word before the cursor.</li></ul><p>By integrating these small habits into your daily routine, you'll find yourself navigating your system and running commands with fluid speed.</p>",
+    "image": "assets/terminal.jpg"
+  },
+  {
+    "id": "smart-mirror-diy-project",
+    "title": "Building a DIY Smart Mirror: A Weekend Project",
+    "date": "2026-05-15",
+    "category": "DIY",
+    "tags": ["diy", "smart-home", "raspberry-pi", "iot"],
+    "summary": "Learn how to build a futuristic smart mirror that displays weather, calendar, and news updates behind a two-way glass pane.",
+    "content": "<p>A smart mirror is a classic DIY maker project. It looks like a normal mirror, but displays useful widgets like weather forecasts, news headlines, and calendar events right on the surface. Here's a brief overview of how to build one in a weekend.</p><h3>Materials Needed</h3><ul><li>A flat-screen monitor with removable casing</li><li>A sheet of two-way acrylic mirror glass</li><li>A Raspberry Pi (Pi Zero 2 W or Pi 4)</li><li>Wood to build a custom frame</li><li>Black backing paper or tape</li></ul><h3>The Software: MagicMirror²</h3><p>The open-source community has created an incredible platform for this project: <strong>MagicMirror²</strong>. It is modular, themeable, and runs perfectly on a Raspberry Pi. Install it via terminal with a single command, then edit the <code>config/config.js</code> file to customize widgets, add calendar links, and adjust layout positions.</p><h3>The Assembly</h3><p>1. Disassemble the monitor to remove the plastic bezel, leaving just the thin screen panel.</p><p>2. Build a wooden shadowbox frame that holds the two-way glass tightly in the front, followed directly by the monitor screen. Make sure the borders are masked with black backing paper to prevent light leaks.</p><p>3. Mount the Raspberry Pi inside the frame, connecting it to the monitor's HDMI port.</p><p>4. Power up the Pi and configure it to boot directly into MagicMirror² in portrait mode.</p><p>Mount the finished mirror on your wall, and start your mornings with a futuristic, sci-fi information display!</p>",
+    "image": "assets/smart_mirror.jpg"
+  },
+  {
+    "id": "css-grid-flexbox-mastery",
+    "title": "CSS Grid vs. Flexbox: When to Use Which?",
+    "date": "2026-05-10",
+    "category": "Tips & Tricks",
+    "tags": ["css", "web-dev", "frontend"],
+    "summary": "Clear up the confusion about modern layout techniques and learn the rule of thumb for choosing between CSS Grid and Flexbox.",
+    "content": "<p>Modern CSS has given us powerful tools for creating responsive layouts: Flexbox and CSS Grid. However, many developers struggle to decide which one to use for a particular task. Here is a simple guide to choosing the right tool for the job.</p><h3>The Golden Rule</h3><p>The most fundamental difference is dimensional: <strong>Flexbox is one-dimensional</strong>, while <strong>CSS Grid is two-dimensional</strong>.</p><ul><li><strong>Flexbox:</strong> Best for arranging items in a single row OR a single column (e.g., navigation bars, custom buttons, simple linear lists).</li><li><strong>CSS Grid:</strong> Best for layouts that require control over BOTH rows and columns simultaneously (e.g., image galleries, full page layouts, complex dashboards).</li></ul><h3>Content-out vs. Layout-in</h3><p>Another way to think about it is design direction:</p><ul><li>Flexbox is <strong>content-out</strong>. You let the content dictate how much space it takes, and Flexbox aligns it nicely.</li><li>Grid is <strong>layout-in</strong>. You define a rigid grid structure first, and then place content into the predefined grid template cells.</li></ul><p>Use them together! A grid layout is perfect for the overall page structure, while Flexbox handles the layout inside individual grid items.</p>",
+    "image": "assets/css_layout.jpg"
+  },
+  {
+    "id": "safely-cleaning-vintage-electronics",
+    "title": "How to Safely Clean and Deoxidize Vintage Electronics",
+    "date": "2026-05-05",
+    "category": "Tips & Tricks",
+    "tags": ["restoration", "electronics", "retro", "maintenance"],
+    "summary": "Learn the best cleaning agents and techniques to remove corrosion, dust, and battery leaks from vintage console motherboards.",
+    "content": "<p>When restoring vintage hardware, you will inevitably deal with dirty boards, corroded battery terminals, and scratchy volume wheels. Cleaning them incorrectly can ruin vintage plastics or short-circuit delicate circuits. Here's a guide to doing it safely.</p><h3>DeoxIT: The Contact Cleaner King</h3><p>If dials are scratchy (like a Walkman volume knob) or ports aren't connecting well, use a dedicated contact cleaner like DeoxIT D5. Spray a tiny amount into the potentiometer housing and turn the dial back and forth 20-30 times. This dissolves oxide buildup and restores electrical conductivity without leaving residue.</p><h3>Treating Battery Corrosion</h3><p>Old alkaline batteries leak potassium hydroxide, which corrodes metallic contacts and traces. Neutralize this alkaline substance using a mild acid, like white vinegar or lemon juice, applied with a Q-tip. Once the bubbling stops, rinse the area with isopropyl alcohol and dry it completely.</p><h3>Board Washing</h3><p>For extremely dirty motherboards, you can wash them! Remove all batteries, screens, and socketed chips. Scrub the board with high-purity (99%) Isopropyl Alcohol (IPA) and an anti-static soft toothbrush. Let it dry completely for 24 hours before powering it up.</p>",
+    "image": "assets/cleaning_electronics.jpg"
+  },
+  {
+    "id": "mechanical-watch-maintenance",
+    "title": "Introduction to Mechanical Watches: A DIY Maintenance Guide",
+    "date": "2026-04-28",
+    "category": "DIY",
+    "tags": ["diy", "watches", "mechanical", "retro"],
+    "summary": "An introduction to the intricate world of mechanical timepieces and how to perform basic adjustments and strap swaps at home.",
+    "content": "<p>In an era of smartwatches that need charging every night, there is something magical about a watch powered purely by springs, gears, and physics. Mechanical watches are marvels of micro-engineering. Here's how to appreciate and maintain them.</p><h3>Automatic vs. Hand-Wound</h3><p>A manual mechanical watch must be wound by turning the crown to tighten the mainspring. An automatic watch uses a weighted rotor that spins as your wrist moves, winding the watch automatically throughout the day.</p><h3>Basic Home Maintenance</h3><p>While deep movement servicing should be left to professional watchmakers, there are several things you can do yourself:</p><ul><li><strong>Strap Swapping:</strong> Buy a spring bar tool to easily swap steel bracelets for leather or NATO straps, instantly changing the watch's look.</li><li><strong>Regulating the Speed:</strong> If your watch runs too fast or slow, you can open the caseback and nudge the regulator lever slightly toward '+' or '-' to adjust the balance wheel's oscillation speed.</li></ul><p>It's a wonderful hobby that connects you with centuries of human craftsmanship.</p>",
+    "image": "assets/watch.jpg"
+  },
+  {
+    "id": "optimizing-windows-for-gaming",
+    "title": "Optimizing Windows for Maximum Gaming Performance",
+    "date": "2026-04-20",
+    "category": "Tips & Tricks",
+    "tags": ["windows", "gaming", "pc", "optimization"],
+    "summary": "A compilation of simple settings tweaks in Windows to reduce background CPU usage and maximize in-game framerates.",
+    "content": "<p>Is your gaming PC stuttering? Windows comes preconfigured for general office productivity, which means background tasks, telemetry, and animations are active by default. By tweaking a few options, you can free up system resources for your games.</p><h3>1. Enable Game Mode</h3><p>Windows has a built-in 'Game Mode'. Go to Settings > Gaming > Game Mode and turn it ON. This stops Windows Update from performing driver installations and sending restart notifications while gaming, and stabilizes frame rates depending on the game.</p><h3>2. Disable Startup Apps</h3><p>Many programs sneak into your startup queue, eating up RAM and CPU cycles. Open Task Manager (<code>Ctrl + Shift + Esc</code>), navigate to the Startup tab, and disable apps you don't need running immediately (e.g., game launchers, music apps, cloud storage).</p><h3>3. Power Plan Settings</h3><p>Switch your power plan from 'Balanced' to 'High Performance'. Go to Control Panel > Hardware and Sound > Power Options and select High Performance to ensure your CPU doesn't throttle down to save power during intense gaming sessions.</p>",
+    "image": "assets/windows_gaming.jpg"
+  }
+]
